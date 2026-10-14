@@ -94,7 +94,7 @@ try {
  assert.ok(params.get('body').includes('A test & inquiry.\nSecond line.'));
  assert.ok(status.textContent.includes('has not been sent'));
  await page.goto(`${base}/index.html`);
- await page.getByText('How do I make an appointment?',{exact:true}).click();
+ await page.locator('.faq-list summary').first().click();
  assert.equal(await page.locator('.faq-list details').first().getAttribute('open'),'');
  await page.goto(`${base}/index.html`);
  await page.keyboard.press('Tab');

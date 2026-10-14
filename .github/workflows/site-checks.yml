@@ -32,4 +32,5 @@ jobs:
         with:
           name: website-preview-and-qa
           path: .test-results/
+          include-hidden-files: true
           retention-days: 14
