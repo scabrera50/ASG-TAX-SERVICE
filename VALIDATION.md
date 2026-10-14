@@ -4,7 +4,7 @@
 
 The new standalone `server/` API is implemented but is not hosted or connected to the live form. The live site continues to prepare email drafts. Backend security tests cover strict input types, raw length bounds, required values, service/language allowlists, email/phone formats, unknown fields, malformed JSON/UTF-8, request byte limits, content types, origins, unsupported methods, generic error responses, and startup configuration. SQLite tests verify persistence, schema constraints, and SQL injection strings remaining literal data in prepared inserts/reads. Both language forms are checked against the server contract.
 
-Local Node.js 24.19.0 checks passed; the actual HTTP integration test is run in GitHub Actions because local loopback networking is restricted in this desktop session. No real visitor data or messages were used.
+All **36 security tests passed**, including actual HTTP requests, in [GitHub Actions run 38630562408](https://github.com/scabrera50/ASG-TAX-SERVICE/actions/runs/38630562408) on application commit `a00e4c189c918e043fcd0eeb0cbe9f3e090ff688` using Node.js 24.21.0. The same run passed all **60 responsive bilingual website checks** and existing interaction/accessibility checks. Local Node.js 24.19.0 checks passed 35 tests; the HTTP test ran in GitHub because local loopback networking is restricted in this desktop session. No real visitor data or messages were used.
 
 ## Published static website
 
@@ -23,3 +23,4 @@ All 12 service listings, all seven office hours, and supplied contact informatio
 The ASG skyline logo is a transparent PNG created with ImageGen using the supplied landmark photographs as references. Those reference photographs and municipal seals are not published as website assets. The WhatsApp glyph’s attribution/license is included.
 
 Local browser preview was unavailable because of session networking/browser restrictions; browser QA ran in GitHub’s hosted runner. Contact uses an email draft, not backend delivery. Appointments and document delivery require contacting the office. No actual email or WhatsApp message was sent during QA. No DNS, domain setting, or business credentials were changed.
+
