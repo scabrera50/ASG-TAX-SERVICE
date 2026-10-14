@@ -30,7 +30,11 @@ Publish from the `main` branch and repository root. This release preserves the e
 
 Appointments are arranged by calling 978-902-9018. The client documents page explains how to contact the office; no secure upload, client account system, or online booking backend is connected.
 
-## Editing
+## Server validation backend
+
+The `server/` folder contains a standalone Node API that rejects invalid contact submissions before writing them to SQLite and uses parameterized database queries. It includes automated security tests. **It is not hosted or connected to the live GitHub Pages form.** The public form still prepares an email draft, so no visitor data is currently sent to this API or stored by the website. See [server/README.md](server/README.md) for its input contract, setup, and the remaining hosting/integration step.
+
+## Editing the static website
 
 The root HTML files are the English pages; `es/` contains the Spanish versions. `assets/brand.css` contains ASG’s visual design, `assets/site.js` controls navigation and service filters, and `assets/contact.js` prepares the inquiry draft. The CMS files in `assets/cms/` are unchanged from the supplied release; the upstream license is included there. CMS here means the Centers for Medicare & Medicaid Services Design System, not a content-management backend. The WhatsApp glyph comes from Font Awesome; its attribution and license are included in assets/whatsapp-LICENSE.txt.
 
@@ -43,4 +47,4 @@ The root HTML files are the English pages; `es/` contains the Spanish versions. 
 
 ## Verification
 
-The GitHub Actions workflow runs Chromium checks across six pages and five screen widths, validates links/assets and interactions, scans accessibility, and saves desktop/mobile screenshots. See `VALIDATION.md` for the actual verification results and any limits.
+The GitHub Actions workflow runs server security tests and Chromium checks across 12 pages and five screen widths, validates links/assets and interactions, scans accessibility, and saves desktop/mobile screenshots. See `VALIDATION.md` for the actual verification results and any limits.
