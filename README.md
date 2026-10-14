@@ -1,6 +1,6 @@
 # ASG Tax Services
 
-A modern, responsive six-page website for ASG Tax Services in Lawrence, Massachusetts. Built with the CMS Design System 18.1.0 and an ASG brand layer: warm ivory, deep green, editorial typography, and local fonts. All 12 service listings and seven office-hour entries are retained from the supplied release.
+A modern, responsive website for ASG Tax Services in Lawrence, Massachusetts, with six pages each in English and Spanish. Built with the CMS Design System 18.1.0 and a light ASG brand layer: ivory, white, spring green, readable leaf green, and local fonts. All 12 service listings and seven office-hour entries are retained from the supplied release.
 
 ## Run locally
 
@@ -23,13 +23,16 @@ Publish from the `main` branch and repository root. This release preserves the e
 - Service-specific links that preselect an inquiry topic.
 - Expandable FAQs and an accessible skip link.
 - Local fonts and CMS styles; the website makes no external asset requests.
+- English/Spanish switches preserve the current page and service/filter query.
+- A custom transparent ASG logo is used in the header and favicon.
+- WhatsApp links reach 978-902-9018 on every page and in the contact details. Clicking opens WhatsApp without automatically sending a message.
 - Contact form that validates input and prepares an email draft. Visitors review and send in their email app. The website does not send or store the message.
 
 Appointments are arranged by calling 978-902-9018. The client documents page explains how to contact the office; no secure upload, client account system, or online booking backend is connected.
 
 ## Editing
 
-The six HTML files are the pages. `assets/brand.css` contains ASG’s visual design, `assets/site.js` controls navigation and service filters, and `assets/contact.js` prepares the inquiry draft. The CMS files in `assets/cms/` are unchanged from the supplied release; the upstream license is included there. CMS here means the Centers for Medicare & Medicaid Services Design System, not a content-management backend. Do not add government branding or imply government affiliation.
+The root HTML files are the English pages; `es/` contains the Spanish versions. `assets/brand.css` contains ASG’s visual design, `assets/site.js` controls navigation and service filters, and `assets/contact.js` prepares the inquiry draft. The CMS files in `assets/cms/` are unchanged from the supplied release; the upstream license is included there. CMS here means the Centers for Medicare & Medicaid Services Design System, not a content-management backend. The WhatsApp glyph comes from Font Awesome; its attribution and license are included in assets/whatsapp-LICENSE.txt.
 
 ## Business details
 

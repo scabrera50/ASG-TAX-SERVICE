@@ -1,5 +1,7 @@
 'use strict';
 document.body.classList.add('js');
+const spanish = document.documentElement.lang === 'es';
+document.querySelectorAll('.language-switch').forEach(link => { const target = new URL(link.href); target.search = window.location.search; link.href = target.href; });
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.getElementById('primary-navigation');
 if (menu && navigation) {
@@ -20,7 +22,7 @@ if(filters) {
     buttons.forEach(button => button.setAttribute('aria-pressed',String(button.dataset.category === category)));
     let count = 0;
     cards.forEach(card => { card.hidden = category !== 'all' && card.dataset.serviceCategory !== category; if(!card.hidden) count++; });
-    document.getElementById('service-count').textContent = `${count} service${count === 1 ? '' : 's'} to help you move forward`;
+    document.getElementById('service-count').textContent = spanish ? `${count} servicio${count === 1 ? '' : 's'} para ayudarte a seguir adelante` : `${count} service${count === 1 ? '' : 's'} to help you move forward`;
   };
   filters.hidden = false;
   setFilter(new URLSearchParams(window.location.search).get('category') || 'all');
@@ -29,5 +31,6 @@ if(filters) {
     const url = new URL(window.location.href);
     if(button.dataset.category === 'all') url.searchParams.delete('category'); else url.searchParams.set('category',button.dataset.category);
     window.history.replaceState(null,'',url);
+    document.querySelectorAll('.language-switch').forEach(link => { const target = new URL(link.href); target.search = url.search; link.href = target.href; });
   }));
 }
