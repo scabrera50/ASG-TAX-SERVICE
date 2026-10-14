@@ -1,5 +1,13 @@
 # Validation — October 14, 2026
 
+## Server validation backend
+
+The new standalone `server/` API is implemented but is not hosted or connected to the live form. The live site continues to prepare email drafts. Backend security tests cover strict input types, raw length bounds, required values, service/language allowlists, email/phone formats, unknown fields, malformed JSON/UTF-8, request byte limits, content types, origins, unsupported methods, generic error responses, and startup configuration. SQLite tests verify persistence, schema constraints, and SQL injection strings remaining literal data in prepared inserts/reads. Both language forms are checked against the server contract.
+
+Local Node.js 24.19.0 checks passed; the actual HTTP integration test is run in GitHub Actions because local loopback networking is restricted in this desktop session. No real visitor data or messages were used.
+
+## Published static website
+
 The final light, bilingual Lawrence-logo implementation passed GitHub Actions run 38610448772 on application commit 26a96b92fc516669b89dd446788f21770d4a6de5.
 
 - Chromium rendered all 12 pages (six English and six Spanish) at 320, 390, 768, 1024, and 1440 pixels: 60 checks with no horizontal overflow.
