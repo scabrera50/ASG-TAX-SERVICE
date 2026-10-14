@@ -1,17 +1,17 @@
 # Validation — October 14, 2026
 
-GitHub Actions run 38605967835 passed on application commit e3c333e50ab640e7b6fd7f754289cdf56b208c03:
+The final light, bilingual Lawrence-logo implementation passed GitHub Actions run 38610448772 on application commit 26a96b92fc516669b89dd446788f21770d4a6de5.
 
-- Chromium rendered all six pages at widths of 320, 390, 768, 1024, and 1440 pixels: 30 checks with no horizontal overflow.
-- All internal page links and referenced local assets resolved. No JavaScript page errors or HTTP failures were detected.
-- Mobile menu, Escape behavior, service categories, category URLs, unknown-category fallback, and service-specific inquiry selection passed.
-- Empty required fields and invalid email addresses were rejected. Draft-addressing and encoding were tested with a mocked navigation target, so no external email handler opened.
-- FAQ expansion, keyboard skip-link focus, and navigation/form behavior with JavaScript disabled passed.
-- Automated axe-core 4.10.3 scans of all six desktop pages found zero violations under the WCAG 2 A/AA and WCAG 2.1 AA rule sets. These automated checks do not replace manual assistive-technology testing.
-- Desktop home/services/contact screenshots, a mobile home screenshot, and the result JSON were saved as the website-preview-and-qa artifact on that run.
+- Chromium rendered all 12 pages (six English and six Spanish) at 320, 390, 768, 1024, and 1440 pixels: 60 checks with no horizontal overflow.
+- Header logo loaded, WhatsApp links consistently target https://wa.me/19789029018, and all internal page links and referenced assets resolved. No JavaScript page errors or HTTP failures were detected.
+- English/Spanish switches preserved page, category, and selected service. Spanish service labels, filter counts, contact labels, and draft messages were checked.
+- Mobile menu, Escape behavior, service filtering, unknown-category fallback, service-specific inquiries, FAQ expansion, keyboard skip-link focus, and no-JavaScript fallbacks passed.
+- Required fields and invalid email addresses were rejected. English and Spanish draft subjects/body encoding passed using a mocked navigation target, so no external email handler opened.
+- Automated axe-core 4.10.3 scans of all 12 desktop pages found zero violations under the WCAG 2 A/AA and WCAG 2.1 AA rule sets. Automated checks do not replace manual assistive-technology testing.
+- Desktop home/services/contact screenshots, a mobile home screenshot, and result JSON were saved as the website-preview-and-qa artifact on that run.
 
-The source retains all 12 service listings, all seven office hours, and the supplied contact information. CMS vendor assets and licensing match the supplied release. Canonicals, CNAME, sitemap, and robots.txt consistently use the repository’s existing www.asgtaxservice.com hostname.
+All 12 service listings, all seven office hours, and supplied contact information are retained. CMS vendor assets and licensing match the supplied release. Canonicals, CNAME, sitemap, and robots.txt consistently use www.asgtaxservice.com; the sitemap includes both languages.
 
-Local browser preview was unavailable because of the session’s networking/browser restrictions. Browser QA ran in GitHub’s hosted runner instead.
+The ASG skyline logo is a transparent PNG created with ImageGen using the supplied landmark photographs as references. Those reference photographs and municipal seals are not published as website assets. The WhatsApp glyph’s attribution/license is included.
 
-Contact uses an email draft, not backend delivery. Appointments and document delivery require contacting the office. No real inquiry or email was sent during development. No DNS, custom-domain setting, or business credentials were changed.
+Local browser preview was unavailable because of session networking/browser restrictions; browser QA ran in GitHub’s hosted runner. Contact uses an email draft, not backend delivery. Appointments and document delivery require contacting the office. No actual email or WhatsApp message was sent during QA. No DNS, domain setting, or business credentials were changed.
