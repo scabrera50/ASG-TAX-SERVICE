@@ -1,0 +1,35 @@
+name: Website checks
+on:
+  push:
+    branches: [main, codex/modernize-asg-cms]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: website-checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install browser test tools
+        run: npm install --no-save --package-lock=false playwright@1.62.1 axe-core@4.10.3
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Start preview and check the website
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/asg-preview.log 2>&1 &
+          node .github/qa.mjs
+      - name: Save screenshots and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-preview-and-qa
+          path: .test-results/
+          retention-days: 14

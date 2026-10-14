@@ -1,0 +1,116 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {createRequire} from 'node:module';
+const require = createRequire(import.meta.url);
+const {chromium} = require('playwright');
+const browser = await chromium.launch({headless:true});
+const base = 'http://127.0.0.1:4173';
+const pages = ['index.html','services.html','about.html','appointment.html','client-portal.html','contact.html'];
+const widths = [320,390,768,1024,1440];
+fs.mkdirSync('.test-results',{recursive:true});
+const results = [], errors = [], broken = [];
+const accessibility = [];
+try {
+ const page = await browser.newPage();
+ page.on('pageerror',error=>errors.push(error.message));
+ page.on('response',response=>{if(response.status()>=400) broken.push(`${response.status()} ${response.url()}`);});
+ for(const width of widths) {
+  await page.setViewportSize({width,height:1000});
+  for(const file of pages) {
+   const response = await page.goto(`${base}/${file}`);
+   assert.equal(response.status(),200);
+   await page.evaluate(()=>document.fonts.ready);
+   const layout = await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,h1:document.querySelectorAll('h1').length,title:document.title,description:document.querySelector('meta[name=description]')?.content,headingFont:getComputedStyle(document.querySelector('h1')).fontFamily,links:Array.from(document.querySelectorAll('a[href],link[href],script[src]'),node=>node.getAttribute('href')||node.getAttribute('src'))}));
+   assert.ok(layout.scrollWidth<=width,`Overflow: ${file} at ${width}, ${layout.scrollWidth}`);
+   assert.equal(layout.h1,1);
+   assert.ok(layout.title && layout.description);
+   assert.ok(layout.headingFont.includes('Bitter'));
+   for(const link of layout.links) {
+    if(/^(https?:|mailto:|tel:|#)/.test(link)) continue;
+    const linked = await page.request.get(new URL(link,page.url()).href);
+    assert.equal(linked.status(),200,`Broken internal link: ${file} -> ${link}`);
+   }
+   results.push({file,width,scrollWidth:layout.scrollWidth});
+   if(width===1440) {
+    await page.addScriptTag({path:require.resolve('axe-core/axe.min.js')});
+    const scan=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
+    accessibility.push({file,violations:scan.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)}))});
+   }
+   if(width===1440 && ['index.html','contact.html','services.html'].includes(file)) await page.screenshot({path:path.resolve(`.test-results/${file.replace('.html','')}-desktop.png`),fullPage:true});
+   if(width===390 && file==='index.html') await page.screenshot({path:path.resolve('.test-results/index-mobile.png'),fullPage:true});
+  }
+ }
+ await page.setViewportSize({width:390,height:844});
+ await page.goto(`${base}/index.html`);
+ const menu = page.getByRole('button',{name:'Menu'});
+ await menu.click();
+ assert.equal(await menu.getAttribute('aria-expanded'),'true');
+ await page.getByRole('navigation',{name:'Main navigation'}).getByRole('link',{name:'Services',exact:true}).click();
+ assert.ok(page.url().endsWith('/services.html'));
+ await menu.click();
+ await page.keyboard.press('Escape');
+ assert.equal(await menu.getAttribute('aria-expanded'),'false');
+ await page.getByRole('button',{name:'Business & accounting',exact:true}).click();
+ assert.equal(await page.locator('[data-service-category]:visible').count(),5);
+ assert.ok(page.url().includes('category=business'));
+ await page.getByRole('button',{name:'Individual taxes',exact:true}).click();
+ assert.equal(await page.locator('[data-service-category]:visible').count(),3);
+ await page.getByRole('button',{name:'Planning & guidance',exact:true}).click();
+ assert.equal(await page.locator('[data-service-category]:visible').count(),4);
+ await page.getByRole('button',{name:'All services',exact:true}).click();
+ assert.equal(await page.locator('[data-service-category]:visible').count(),12);
+ await page.goto(`${base}/services.html?category=business`);
+ assert.equal(await page.locator('[data-service-category]:visible').count(),5);
+ await page.goto(`${base}/services.html?category=unknown`);
+ assert.equal(await page.locator('[data-service-category]:visible').count(),12);
+ await page.goto(`${base}/contact.html?service=Payroll%20support`);
+ assert.equal(await page.locator('#service').inputValue(),'Payroll support');
+ await page.getByRole('button',{name:'Prepare email draft'}).click();
+ assert.equal(await page.locator('#form-status').textContent(),'');
+ assert.equal(await page.locator('#name').evaluate(el=>el.validity.valueMissing),true);
+ await page.locator('#name').fill('QA Example');
+ await page.locator('#email').fill('invalid');
+ assert.equal(await page.locator('#email').evaluate(el=>el.validity.typeMismatch),true);
+ await page.locator('#email').fill('qa@example.com');
+ await page.locator('#message').fill('A test inquiry.');
+ assert.equal(await page.locator('#inquiry-form').evaluate(form=>form.checkValidity()),true);
+ // Exercise draft encoding with a mocked location so no external mail handler opens.
+ const values = new Map([['name','QA & Example'],['email','qa@example.com'],['phone',''],['service','Payroll support'],['message','A test & inquiry.\nSecond line.']]);
+ const status = {textContent:'',append(link){this.link=link;}};
+ let handler,valid=true;
+ const fakeForm = {querySelector:()=>({disabled:true}),addEventListener:(event,fn)=>{handler=fn;},reportValidity:()=>valid};
+ const fakeWindow = {location:{search:'?service=Payroll%20support',href:''}};
+ vm.runInNewContext(fs.readFileSync('assets/contact.js','utf8'),{document:{getElementById:id=>id==='inquiry-form'?fakeForm:id==='form-status'?status:{options:[{value:'Payroll support'}]},createElement:()=>({})},window:fakeWindow,URLSearchParams,encodeURIComponent,FormData:class {get(name){return values.get(name);}}});
+ valid=false; handler({preventDefault(){}}); assert.equal(fakeWindow.location.href,'');
+ valid=true; handler({preventDefault(){}});
+ assert.ok(fakeWindow.location.href.startsWith('mailto:asgtaxservices@gmail.com?'));
+ const params = new URL(fakeWindow.location.href).searchParams;
+ assert.equal(params.get('subject'),'ASG Tax Services general inquiry');
+ assert.ok(params.get('body').includes('QA & Example'));
+ assert.ok(params.get('body').includes('Phone: Not provided'));
+ assert.ok(params.get('body').includes('Service: Payroll support'));
+ assert.ok(params.get('body').includes('A test & inquiry.\nSecond line.'));
+ assert.ok(status.textContent.includes('has not been sent'));
+ await page.goto(`${base}/index.html`);
+ await page.getByText('How do I make an appointment?',{exact:true}).click();
+ assert.equal(await page.locator('.faq-list details').first().getAttribute('open'),'');
+ await page.goto(`${base}/index.html`);
+ await page.keyboard.press('Tab');
+ assert.equal(await page.evaluate(()=>document.activeElement.textContent),'Skip to main content');
+ await page.keyboard.press('Enter');
+ assert.equal(await page.evaluate(()=>document.activeElement.id),'main');
+ const noJs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
+ const noJsPage = await noJs.newPage();
+ await noJsPage.goto(`${base}/contact.html`);
+ assert.ok(await noJsPage.getByRole('navigation',{name:'Main navigation'}).isVisible());
+ assert.equal(await noJsPage.getByRole('button',{name:'Prepare email draft'}).isDisabled(),true);
+ assert.ok(await noJsPage.locator('noscript').isVisible());
+ await noJs.close();
+ assert.deepEqual(errors,[]);
+ assert.deepEqual(broken,[]);
+ fs.writeFileSync('.test-results/qa-results.json',JSON.stringify({layoutChecks:results,accessibility,errors,broken,interactions:'passed',noJs:'passed',draftEncoding:'passed; external mail handler not invoked'},null,2));
+ assert.equal(accessibility.flatMap(scan=>scan.violations).length,0,'Accessibility violations: '+JSON.stringify(accessibility));
+ console.log(`PASS: ${results.length} responsive page checks; links/assets, menu, filters, service inquiry, form validation, draft encoding, FAQs, keyboard skip, and no-JS fallback. No JS errors or HTTP failures.`);
+} finally { await browser.close(); }
