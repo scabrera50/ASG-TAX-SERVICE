@@ -298,12 +298,13 @@ address { font-style:normal; }
 .utility-bar { background:#edf5dd; color:var(--asg-ink); border-bottom:1px solid #e1ebd1; }
 .utility-bar a,.utility-bar a:visited { color:var(--asg-ink); }
 .site-header { background:#fffefa; }
-.brand-mark { width:62px; height:62px; background:white; border:1px solid #e3ebd8; border-radius:13px; padding:4px; }
+.brand-mark { width:72px; height:72px; background:white; border:1px solid #e3ebd8; border-radius:13px; padding:4px; }
 .brand-mark img { display:block; width:100%; height:100%; object-fit:contain; }
 .brand-wordmark { font-size:27px; }
 .navigation { gap:22px; }
 .language-switch { border-left:1px solid #dce6d1; padding:8px 0 8px 15px; color:#285a23; font-size:11px; font-weight:600; text-decoration:none; min-height:44px; display:inline-flex; align-items:center; flex:0 0 auto; }
 .hero-art { background:#f0f6e5; color:var(--asg-ink); border:1px solid #d7e5c5; }
+.hero-skyline-logo { position:absolute; width:84%; height:79%; max-width:460px; left:50%; top:49%; transform:translate(-50%,-50%); object-fit:contain; }
 .art-caption,.art-bottom { color:#456937; }
 .art-orbit { border-color:#cfdfbb; }
 .art-spark { color:#8fbe35; }

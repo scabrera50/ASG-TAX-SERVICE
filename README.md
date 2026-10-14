@@ -24,7 +24,7 @@ Publish from the `main` branch and repository root. This release preserves the e
 - Expandable FAQs and an accessible skip link.
 - Local fonts and CMS styles; the website makes no external asset requests.
 - English/Spanish switches preserve the current page and service/filter query.
-- A custom transparent ASG logo is used in the header and favicon.
+- A custom transparent ASG logo is used in the header, home-page feature, and favicon. It features Lawrence’s mill skyline, the central Ayer Mill Clock Tower, Tower Hill High Service Water Tower, and twin Mount Vernon water tanks.
 - WhatsApp links reach 978-902-9018 on every page and in the contact details. Clicking opens WhatsApp without automatically sending a message.
 - Contact form that validates input and prepares an email draft. Visitors review and send in their email app. The website does not send or store the message.
 
