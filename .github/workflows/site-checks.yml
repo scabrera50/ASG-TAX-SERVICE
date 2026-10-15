@@ -1,7 +1,7 @@
 name: Website checks
 on:
   push:
-    branches: [main, codex/modernize-asg-cms, codex/asg-light-bilingual, codex/asg-server-validation]
+    branches: [main, codex/modernize-asg-cms, codex/asg-light-bilingual, codex/asg-server-validation, codex/asg-immigration-assistance]
   pull_request:
     branches: [main]
 permissions:
@@ -46,3 +46,4 @@ jobs:
           path: .test-results/
           include-hidden-files: true
           retention-days: 14
+

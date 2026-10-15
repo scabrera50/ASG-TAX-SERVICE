@@ -62,12 +62,19 @@ try {
  assert.equal(await page.locator('[data-service-category]:visible').count(),3);
  await page.getByRole('button',{name:'Planning & guidance',exact:true}).click();
  assert.equal(await page.locator('[data-service-category]:visible').count(),4);
+ await page.getByRole('button',{name:'Immigration form assistance',exact:true}).click();
+ assert.equal(await page.locator('[data-service-category]:visible').count(),1);
+ await page.locator('.service-card:visible .text-link').click();
+ assert.ok(page.url().endsWith('#immigration'));
+ assert.ok(await page.locator('#immigration-heading').isVisible());
+ assert.ok((await page.locator('.immigration-notice').textContent()).includes('I am not an attorney licensed to practice law.'));
+ assert.equal(await page.locator('#immigration a[href="https://www.uscis.gov/forms"]').count(),1);
  await page.getByRole('button',{name:'All services',exact:true}).click();
- assert.equal(await page.locator('[data-service-category]:visible').count(),12);
+ assert.equal(await page.locator('[data-service-category]:visible').count(),13);
  await page.goto(`${base}/services.html?category=business`);
  assert.equal(await page.locator('[data-service-category]:visible').count(),5);
  await page.goto(`${base}/services.html?category=unknown`);
- assert.equal(await page.locator('[data-service-category]:visible').count(),12);
+ assert.equal(await page.locator('[data-service-category]:visible').count(),13);
  await page.goto(`${base}/contact.html?service=Payroll%20support`);
  assert.equal(await page.locator('#service').inputValue(),'Payroll support');
  await page.getByRole('button',{name:'Prepare email draft'}).click();
@@ -124,6 +131,19 @@ try {
  await page.locator('.language-switch').click();
  assert.ok(page.url().includes('/contact.html?service=Business'));
  assert.equal(await page.locator('html').getAttribute('lang'),'en');
+ const immigrationTopic='Immigration form translation & clerical assistance';
+ await page.goto(`${base}/services.html?category=immigration`);
+ assert.equal(await page.locator('[data-service-category]:visible').count(),1);
+ await page.locator('.language-switch').click();
+ assert.ok(page.url().includes('/es/services.html?category=immigration'));
+ assert.equal(await page.locator('[data-service-category]:visible').count(),1);
+ assert.ok((await page.locator('.immigration-notice').textContent()).includes('No soy abogada autorizada'));
+ await page.locator('#immigration a[href^="contact.html"]').click();
+ assert.equal(await page.locator('#service').inputValue(),immigrationTopic);
+ assert.equal(await page.locator('#service option:checked').textContent(),'Traducción de formularios de inmigración y asistencia administrativa');
+ await page.locator('.language-switch').click();
+ assert.equal(await page.locator('#service').inputValue(),immigrationTopic);
+ assert.ok((await page.locator('#message-hint').textContent()).includes('immigration case numbers'));
  const noJs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
  const noJsPage = await noJs.newPage();
  await noJsPage.goto(`${base}/contact.html`);
@@ -140,3 +160,4 @@ try {
  assert.equal(accessibility.flatMap(scan=>scan.violations).length,0,'Accessibility violations: '+JSON.stringify(accessibility));
  console.log(`PASS: ${results.length} responsive bilingual page checks; logo/WhatsApp links, language switches, links/assets, menu, filters, service inquiry, form validation, bilingual draft encoding, FAQs, keyboard skip, and no-JS fallback. No JS errors or HTTP failures.`);
 } finally { await browser.close(); }
+

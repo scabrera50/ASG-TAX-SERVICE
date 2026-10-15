@@ -46,7 +46,7 @@ test('English and Spanish forms use exactly the server service allowlist and len
   for(const file of ['contact.html','es/contact.html']) {
     const html = readFileSync(path.join(siteRoot,file),'utf8');
     const select = html.match(/<select[^>]*id="service"[^>]*>([\s\S]*?)<\/select>/)[1];
-    const options = Array.from(select.matchAll(/<option value="([^"]*)"/g),m=>m[1]).filter(Boolean);
+    const options = Array.from(select.matchAll(/<option value="([^"]*)"/g),m=>m[1].replaceAll('&amp;','&')).filter(Boolean);
     assert.deepEqual(options,SERVICES);
     for(const field of ['name','email','phone','message']) {
       const element = html.match(new RegExp('<(?:input|textarea)[^>]*id="'+field+'"[^>]*>'))[0];
@@ -270,3 +270,4 @@ test('real HTTP: reject bypassed browser validation and SQL stays data', {skip:p
     store.close();
   }
 });
+
