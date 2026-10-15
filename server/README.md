@@ -52,7 +52,7 @@ The next deployment step is to choose/provision a Node host with HTTPS and persi
 | `name` | Required string, 1–100 UTF-16 code units | Unicode letters/marks, spaces, periods, apostrophes and hyphens; starts with a letter/mark |
 | `email` | Required string, at most 150 code units | ASCII address; local part at most 64 characters, valid dot-separated domain labels; no header/control characters |
 | `phone` | Optional string, at most 30 code units | Empty, or 7–15 digits with spaces, parentheses, periods, hyphens and an optional leading `+` |
-| `service` | Optional string, at most 80 code units | Exactly one of the existing 12 English service values or `General inquiry`; empty/omitted defaults to general inquiry |
+| `service` | Optional string, at most 80 code units | Exactly one of the 13 English service values or `General inquiry`; empty/omitted defaults to general inquiry |
 | `language` | Optional string | Exactly `en` or `es`; omitted defaults to `en` |
 | `message` | Required string, 1–2,000 code units | Nonblank, well-formed Unicode text; line breaks and tabs allowed, other ASCII controls rejected |
 
@@ -95,3 +95,4 @@ node --test server/test/security.test.mjs
 GitHub Actions enables that HTTP test automatically. Tests cover both forms' agreement with the server contract, bypassed browser validation, invalid types/lengths/enums, malformed JSON/UTF-8, content type, origins, byte limits, error responses, database persistence/constraints, and SQL injection strings remaining data. Test databases contain only synthetic data and are removed afterward.
 
 Design references: [GitHub Pages hosting](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), [Node SQLite](https://nodejs.org/api/sqlite.html), [OWASP input validation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html), and [OWASP parameterized queries](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html).
+

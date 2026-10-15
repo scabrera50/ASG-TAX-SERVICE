@@ -1,5 +1,16 @@
 # Validation — October 14, 2026
 
+## Immigration translation and clerical assistance
+
+The bilingual immigration section, home-page feature, separate service filter and inquiry topic passed [GitHub Actions run 38658425409](https://github.com/scabrera50/ASG-TAX-SERVICE/actions/runs/38658425409) on application commit `41fd39adcc5372ce3b6ed2b554c51b63ff889508`.
+
+- All 60 responsive page checks and automated accessibility checks passed. The 13-service directory retains the original 12 listings plus the new limited assistance offering.
+- English/Spanish immigration filtering, detail links, non-attorney notice, official resource links, topic preselection and language switching passed. No untranslated strings remained after generation.
+- All 36 backend security tests passed, including actual HTTP requests and the new topic's agreement with both contact forms and the strict server allowlist.
+- The owner clarified that the business is licensed, Maria is not an immigration attorney, and she holds a Massachusetts notary commission. Copy was limited to translation and clerical assistance using current [Massachusetts General Laws, chapter 222, section 17](https://malegislature.gov/Laws/GeneralLaws/PartIII/TitleI/Chapter222/Section17). It excludes form selection, eligibility/status assessment, legal/procedural advice, obtaining records, representation and submission on a client's behalf.
+
+The English notice reproduces the statutory statement and the Spanish page translates it. The operator README explains that the required written notice must also be provided to each client before immigration-related services. Website checks verify content and functionality; they do not certify business practices or legal compliance. The existing standalone backend remains unhosted, and the public contact form continues to prepare email drafts.
+
 ## Server validation backend
 
 The new standalone `server/` API is implemented but is not hosted or connected to the live form. The live site continues to prepare email drafts. Backend security tests cover strict input types, raw length bounds, required values, service/language allowlists, email/phone formats, unknown fields, malformed JSON/UTF-8, request byte limits, content types, origins, unsupported methods, generic error responses, and startup configuration. SQLite tests verify persistence, schema constraints, and SQL injection strings remaining literal data in prepared inserts/reads. Both language forms are checked against the server contract.

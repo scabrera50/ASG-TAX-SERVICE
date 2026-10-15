@@ -27,10 +27,19 @@ Publish from the `main` branch and repository root. This release preserves the e
 - A custom transparent ASG logo is used in the header, home-page feature, and favicon. It features Lawrence’s mill skyline, the central Ayer Mill Clock Tower, Tower Hill High Service Water Tower, and twin Mount Vernon water tanks.
 - WhatsApp links reach 978-902-9018 on every page and in the contact details. Clicking opens WhatsApp without automatically sending a message.
 - Contact form that validates input and prepares an email draft. Visitors review and send in their email app. The website does not send or store the message.
+- Immigration form translation and clerical assistance has its own section, service filter and inquiry topic in both languages. It describes the limited scope for a Massachusetts non-attorney notary, includes the non-attorney notice, and links to official resources. No immigration legal advice, eligibility assessment, form selection, document procurement, representation or filing on a client's behalf is advertised.
 
 Appointments are arranged by calling 978-902-9018. The client documents page explains how to contact the office; no secure upload, client account system, or online booking backend is connected.
 
-## Server validation backend
+## Immigration assistance scope
+
+The owner confirmed that the business is licensed and Maria is a Massachusetts notary, but is not an immigration attorney. The website does not portray a business license or notary commission as authorization to practice immigration law. Its immigration service wording follows the narrow scope in [Massachusetts General Laws, chapter 222, section 17](https://malegislature.gov/Laws/GeneralLaws/PartIII/TitleI/Chapter222/Section17): translation of form questions and completion at a client's explicit direction when translation of their answers is necessary. Clients or their qualified legal professionals select forms; clients review, sign and submit their own applications. Making copies refers only to material the client provides, without obtaining records or assessing what evidence is needed.
+
+**Before providing any immigration-related assistance, provide the client with the written statement required by section 17(b)(iii).** The English notice in the website section reproduces that statement; the Spanish section provides a translation. Posting a notice online does not replace giving the individual client the required written statement. Do not expand the service in practice to legal/procedural advice or filing on a client's behalf. A disclaimer does not authorize restricted services.
+
+Official USCIS links are external reference resources; the site does not recommend particular applications or interpret their instructions. The inquiry form accepts general questions only and reminds visitors to omit immigration case numbers and identity documents.
+
+## Server validation backend status
 
 The `server/` folder contains a standalone Node API that rejects invalid contact submissions before writing them to SQLite and uses parameterized database queries. It includes automated security tests. **It is not hosted or connected to the live GitHub Pages form.** The public form still prepares an email draft, so no visitor data is currently sent to this API or stored by the website. See [server/README.md](server/README.md) for its input contract, setup, and the remaining hosting/integration step.
 
@@ -48,3 +57,4 @@ The root HTML files are the English pages; `es/` contains the Spanish versions. 
 ## Verification
 
 The GitHub Actions workflow runs server security tests and Chromium checks across 12 pages and five screen widths, validates links/assets and interactions, scans accessibility, and saves desktop/mobile screenshots. See `VALIDATION.md` for the actual verification results and any limits.
+
