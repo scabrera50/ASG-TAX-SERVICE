@@ -132,10 +132,11 @@ try {
  assert.ok(page.url().includes('/contact.html?service=Business'));
  assert.equal(await page.locator('html').getAttribute('lang'),'en');
  const immigrationTopic='Immigration form translation & clerical assistance';
- await page.goto(`${base}/services.html?category=immigration`);
+ await page.goto(`${base}/services.html?category=immigration#immigration`);
  assert.equal(await page.locator('[data-service-category]:visible').count(),1);
  await page.locator('.language-switch').click();
  assert.ok(page.url().includes('/es/services.html?category=immigration'));
+ assert.ok(page.url().endsWith('#immigration'));
  assert.equal(await page.locator('[data-service-category]:visible').count(),1);
  assert.ok((await page.locator('.immigration-notice').textContent()).includes('No soy abogada autorizada'));
  await page.locator('#immigration a[href^="contact.html"]').click();

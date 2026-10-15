@@ -1,7 +1,7 @@
 'use strict';
 document.body.classList.add('js');
 const spanish = document.documentElement.lang === 'es';
-document.querySelectorAll('.language-switch').forEach(link => { const target = new URL(link.href); target.search = window.location.search; link.href = target.href; });
+document.querySelectorAll('.language-switch').forEach(link => { const target = new URL(link.href); target.search = window.location.search; target.hash = window.location.hash; link.href = target.href; });
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.getElementById('primary-navigation');
 if (menu && navigation) {
@@ -34,3 +34,4 @@ if(filters) {
     document.querySelectorAll('.language-switch').forEach(link => { const target = new URL(link.href); target.search = url.search; link.href = target.href; });
   }));
 }
+
