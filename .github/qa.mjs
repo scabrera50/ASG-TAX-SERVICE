@@ -7,6 +7,50 @@ const require = createRequire(import.meta.url);
 const {chromium} = require('playwright');
 const browser = await chromium.launch({headless:true});
 const base = 'http://127.0.0.1:4173';
+const spanishServiceInquiries = [
+ ['Income tax return preparation','Preparación de declaraciones de impuestos'],
+ ['Income tax return filing','Presentación de declaraciones de impuestos'],
+ ['Local tax return preparation','Preparación de impuestos locales'],
+ ['Business tax services','Servicios tributarios para negocios'],
+ ['Accounting services','Servicios de contabilidad'],
+ ['Tax accounting','Contabilidad tributaria'],
+ ['New business tax consulting','Asesoría tributaria para nuevos negocios'],
+ ['Payroll support','Apoyo con la nómina'],
+ ['Tax planning','Planificación tributaria'],
+ ['Tax problem consulting','Consultas sobre problemas tributarios'],
+ ['IRS audit representation','Representación en auditorías del IRS'],
+ ['Translations','Traducciones'],
+ ['Immigration form translation & clerical assistance','Traducción de formularios de inmigración y asistencia administrativa']
+];
+async function checkSpanishServiceInquiries(page,javaScriptEnabled=true) {
+ const servicesUrl = `${base}/es/services.html`;
+ await page.goto(servicesUrl);
+ assert.equal(await page.locator('.service-card a[href*="?service="]').count(),12);
+ assert.equal(await page.locator('#immigration a[href*="?service="]').count(),1);
+ assert.equal(await page.locator('a[href*="?service="]').count(),spanishServiceInquiries.length);
+ for(const [index,[topic,label]] of spanishServiceInquiries.entries()) {
+  await page.goto(servicesUrl);
+  const link = page.locator('a[href*="?service="]').nth(index);
+  const expectedUrl = `${base}/es/contact.html?service=${encodeURIComponent(topic)}`;
+  // Resolve the actual anchor: reject English forms, /es/es/, and altered query values.
+  assert.equal(await link.evaluate(anchor=>anchor.href),expectedUrl,`Spanish inquiry destination: ${topic}`);
+  await link.click();
+  await page.waitForURL(expectedUrl);
+  assert.equal(page.url(),expectedUrl);
+  assert.equal(await page.locator('html').getAttribute('lang'),'es');
+  if(javaScriptEnabled) {
+   assert.equal(await page.locator('#service').inputValue(),topic);
+   assert.equal(await page.locator('#service option:checked').textContent(),label);
+  }
+ }
+ await page.goto(`${servicesUrl}?category=immigration`);
+ const immigrationCard = page.locator('.service-card[data-service-category="immigration"] .text-link');
+ assert.equal(await immigrationCard.getAttribute('href'),'#immigration');
+ await immigrationCard.click();
+ await page.waitForURL(`${servicesUrl}?category=immigration#immigration`);
+ assert.ok(await page.locator('#immigration-heading').isVisible());
+ assert.ok((await page.locator('.immigration-notice').textContent()).includes('No soy abogada autorizada'));
+}
 const englishPages = ['index.html','services.html','about.html','appointment.html','client-portal.html','contact.html'];
 const pages = [...englishPages,...englishPages.map(file=>'es/'+file)];
 const widths = [320,390,768,1024,1440];
@@ -126,6 +170,8 @@ try {
  assert.equal(await page.locator('[data-service-category]:visible').count(),5);
  assert.ok((await page.locator('#service-count').textContent()).includes('servicios'));
  await page.locator('.service-card:visible .text-link').first().click();
+ assert.equal(new URL(page.url()).pathname,'/es/contact.html');
+ assert.equal(await page.locator('html').getAttribute('lang'),'es');
  assert.equal(await page.locator('#service').inputValue(),'Business tax services');
  assert.equal(await page.locator('#service option:checked').textContent(),'Servicios tributarios para negocios');
  await page.locator('.language-switch').click();
@@ -139,12 +185,15 @@ try {
  assert.ok(page.url().endsWith('#immigration'));
  assert.equal(await page.locator('[data-service-category]:visible').count(),1);
  assert.ok((await page.locator('.immigration-notice').textContent()).includes('No soy abogada autorizada'));
- await page.locator('#immigration a[href^="contact.html"]').click();
+ await page.locator('#immigration a[href*="?service="]').click();
+ assert.equal(new URL(page.url()).pathname,'/es/contact.html');
+ assert.equal(await page.locator('html').getAttribute('lang'),'es');
  assert.equal(await page.locator('#service').inputValue(),immigrationTopic);
  assert.equal(await page.locator('#service option:checked').textContent(),'Traducción de formularios de inmigración y asistencia administrativa');
  await page.locator('.language-switch').click();
  assert.equal(await page.locator('#service').inputValue(),immigrationTopic);
  assert.ok((await page.locator('#message-hint').textContent()).includes('immigration case numbers'));
+ await checkSpanishServiceInquiries(page);
  const noJs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
  const noJsPage = await noJs.newPage();
  await noJsPage.goto(`${base}/contact.html`);
@@ -154,11 +203,12 @@ try {
  await noJsPage.goto(`${base}/es/contact.html`);
  assert.equal(await noJsPage.getByRole('button',{name:'Preparar borrador de correo'}).isDisabled(),true);
  assert.ok((await noJsPage.locator('.language-switch').getAttribute('href')).endsWith('../contact.html'));
+ await checkSpanishServiceInquiries(noJsPage,false);
  await noJs.close();
  assert.deepEqual(errors,[]);
  assert.deepEqual(broken,[]);
- fs.writeFileSync('.test-results/qa-results.json',JSON.stringify({layoutChecks:results,accessibility,errors,broken,interactions:'passed',noJs:'passed',draftEncoding:'passed; external mail handler not invoked'},null,2));
+ fs.writeFileSync('.test-results/qa-results.json',JSON.stringify({layoutChecks:results,accessibility,errors,broken,interactions:'passed',noJs:'passed',spanishServiceInquiries:{count:spanishServiceInquiries.length,destinations:'passed with and without JavaScript',topicPreselection:'passed with JavaScript',immigrationCard:'preserves in-page details with and without JavaScript'},draftEncoding:'passed; external mail handler not invoked'},null,2));
  assert.equal(accessibility.flatMap(scan=>scan.violations).length,0,'Accessibility violations: '+JSON.stringify(accessibility));
- console.log(`PASS: ${results.length} responsive bilingual page checks; logo/WhatsApp links, language switches, links/assets, menu, filters, service inquiry, form validation, bilingual draft encoding, FAQs, keyboard skip, and no-JS fallback. No JS errors or HTTP failures.`);
+ console.log(`PASS: ${results.length} responsive bilingual page checks; all ${spanishServiceInquiries.length} Spanish inquiry destinations with and without JavaScript; logo/WhatsApp links, language switches, links/assets, menu, filters, service inquiry, form validation, bilingual draft encoding, FAQs, keyboard skip, and no-JS fallback. No JS errors or HTTP failures.`);
 } finally { await browser.close(); }
 
