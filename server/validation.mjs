@@ -4,7 +4,7 @@ export const SERVICES = Object.freeze([
   'Local tax return preparation', 'Business tax services', 'Accounting services',
   'Tax accounting', 'New business tax consulting', 'Payroll support',
   'Tax planning', 'Tax problem consulting', 'IRS audit representation',
-  'Translations', 'Immigration form translation & clerical assistance', 'General inquiry',
+  'Translations', 'Notary public services', 'Immigration form translation & clerical assistance', 'General inquiry',
 ]);
 export const LIMITS = Object.freeze({name:100, email:150, phone:30, service:80, message:2000});
 const FIELDS = new Set([...Object.keys(LIMITS), 'language']);

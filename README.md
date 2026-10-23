@@ -27,9 +27,14 @@ Publish from the `main` branch and repository root. This release preserves the e
 - A custom transparent ASG logo is used in the header, home-page feature, and favicon. It features Lawrence’s mill skyline, the central Ayer Mill Clock Tower, Tower Hill High Service Water Tower, and twin Mount Vernon water tanks.
 - WhatsApp links reach 978-902-9018 on every page and in the contact details. Clicking opens WhatsApp without automatically sending a message.
 - Contact form that validates input and prepares an email draft. Visitors review and send in their email app. The website does not send or store the message.
+- Notary Public services have a dedicated English/Spanish service card, category filter and inquiry topic. The Spanish advertising uses “servicios de notarización,” includes a prominent non-attorney disclaimer, and does not imply legal advice, real-estate closings or remote notarization.
 - Immigration form translation and clerical assistance has its own section, service filter and inquiry topic in both languages. It describes the limited scope for a Massachusetts non-attorney notary, includes the non-attorney notice, and links to official resources. No immigration legal advice, eligibility assessment, form selection, document procurement, representation or filing on a client's behalf is advertised.
 
 Appointments are arranged by calling 978-902-9018. The client documents page explains how to contact the office; no secure upload, client account system, or online booking backend is connected.
+
+## Notary services scope
+
+Maria holds a Massachusetts notary commission. The website describes notarization inquiries only, without promising specific notarial acts, fees, mobile visits, or remote notarization. Confirm availability and identification requirements with the office. The Spanish notice reflects [M.G.L. c. 222, § 21](https://malegislature.gov/Laws/GeneralLaws/PartIII/TitleI/Chapter222/Section21), and avoids the prohibited advertising terms in [§ 16(i)](https://malegislature.gov/Laws/GeneralLaws/PartIII/TitleI/Chapter222/Section16). The no-legal-advice boundary follows [§ 17](https://malegislature.gov/Laws/GeneralLaws/PartIII/TitleI/Chapter222/Section17).
 
 ## Immigration assistance scope
 

@@ -20,12 +20,13 @@ const spanishServiceInquiries = [
  ['Tax problem consulting','Consultas sobre problemas tributarios'],
  ['IRS audit representation','Representación en auditorías del IRS'],
  ['Translations','Traducciones'],
+ ['Notary public services','Servicios de notarización'],
  ['Immigration form translation & clerical assistance','Traducción de formularios de inmigración y asistencia administrativa']
 ];
 async function checkSpanishServiceInquiries(page,javaScriptEnabled=true) {
  const servicesUrl = `${base}/es/services.html`;
  await page.goto(servicesUrl);
- assert.equal(await page.locator('.service-card a[href*="?service="]').count(),12);
+ assert.equal(await page.locator('.service-card a[href*="?service="]').count(),13);
  assert.equal(await page.locator('#immigration a[href*="?service="]').count(),1);
  assert.equal(await page.locator('a[href*="?service="]').count(),spanishServiceInquiries.length);
  for(const [index,[topic,label]] of spanishServiceInquiries.entries()) {
@@ -113,12 +114,18 @@ try {
  assert.ok(await page.locator('#immigration-heading').isVisible());
  assert.ok((await page.locator('.immigration-notice').textContent()).includes('I am not an attorney licensed to practice law.'));
  assert.equal(await page.locator('#immigration a[href="https://www.uscis.gov/forms"]').count(),1);
+ await page.getByRole('button',{name:'Notary services',exact:true}).click();
+ assert.equal(await page.locator('[data-service-category]:visible').count(),1);
+ await page.locator('.service-card:visible .text-link').click();
+ assert.equal(new URL(page.url()).pathname,'/contact.html');
+ assert.equal(await page.locator('#service').inputValue(),'Notary public services');
+ await page.goto(`${base}/services.html`);
  await page.getByRole('button',{name:'All services',exact:true}).click();
- assert.equal(await page.locator('[data-service-category]:visible').count(),13);
+ assert.equal(await page.locator('[data-service-category]:visible').count(),14);
  await page.goto(`${base}/services.html?category=business`);
  assert.equal(await page.locator('[data-service-category]:visible').count(),5);
  await page.goto(`${base}/services.html?category=unknown`);
- assert.equal(await page.locator('[data-service-category]:visible').count(),13);
+ assert.equal(await page.locator('[data-service-category]:visible').count(),14);
  await page.goto(`${base}/contact.html?service=Payroll%20support`);
  assert.equal(await page.locator('#service').inputValue(),'Payroll support');
  await page.getByRole('button',{name:'Prepare email draft'}).click();
@@ -194,6 +201,14 @@ try {
  assert.equal(await page.locator('#service').inputValue(),immigrationTopic);
  assert.ok((await page.locator('#message-hint').textContent()).includes('immigration case numbers'));
  await checkSpanishServiceInquiries(page);
+ await page.goto(`${base}/es/services.html?category=notary`);
+ assert.equal(await page.locator('[data-service-category]:visible').count(),1);
+ assert.ok((await page.locator('.service-card[data-service-category="notary"] [role="note"]').textContent()).includes('No soy abogada y no tengo autoridad'));
+ await page.locator('.service-card:visible .text-link').click();
+ assert.equal(await page.locator('#service').inputValue(),'Notary public services');
+ assert.equal(await page.locator('#service option:checked').textContent(),'Servicios de notarización');
+ await page.locator('.language-switch').click();
+ assert.equal(await page.locator('#service').inputValue(),'Notary public services');
  const noJs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
  const noJsPage = await noJs.newPage();
  await noJsPage.goto(`${base}/contact.html`);
