@@ -1,5 +1,9 @@
 # Validation — October 14, 2026
 
+## Notary Public service addition
+
+The service directory is extended from 13 to 14 services, with a separate notary filter and bilingual inquiry options. The Spanish notary description includes a prominently displayed non-attorney/non-legal-advice notice; the site does not advertise remote notarization, mobile appointments, legal advice or a fixed fee. Browser QA checks all 14 Spanish inquiry destinations with and without JavaScript, plus the English/Spanish notary category, topic selection and disclaimer. Backend tests compare the form options with the strict server allowlist. Passing CI results must be verified on the pull request before merging.
+
 ## Immigration translation and clerical assistance
 
 The bilingual immigration section, home-page feature, separate service filter and inquiry topic passed [GitHub Actions run 38658425409](https://github.com/scabrera50/ASG-TAX-SERVICE/actions/runs/38658425409) on application commit `41fd39adcc5372ce3b6ed2b554c51b63ff889508`.
