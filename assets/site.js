@@ -10,7 +10,7 @@ if (menu && navigation) {
   menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; menu.setAttribute('aria-expanded',String(open)); navigation.classList.toggle('is-open',open); });
   document.addEventListener('keydown',event => { if(event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { closeMenu(); menu.focus(); } });
   document.addEventListener('click',event => { if(!navigation.contains(event.target) && !menu.contains(event.target)) closeMenu(); });
-  window.matchMedia('(min-width: 901px)').addEventListener('change',closeMenu);
+  window.matchMedia('(min-width: 961px)').addEventListener('change',closeMenu);
 }
 document.querySelectorAll('[data-year]').forEach(node => { node.textContent = new Date().getFullYear(); });
 const filters = document.querySelector('.service-filters');

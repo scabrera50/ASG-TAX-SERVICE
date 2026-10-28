@@ -1,6 +1,6 @@
 # ASG Tax Services
 
-A modern, responsive website for ASG Tax Services in Lawrence, Massachusetts, with six pages each in English and Spanish. Built with the CMS Design System 18.1.0 and a light ASG brand layer: ivory, white, spring green, readable leaf green, and local fonts. All 12 service listings and seven office-hour entries are retained from the supplied release.
+A static website for ASG Tax Services in Lawrence, Massachusetts, with six pages each in English and Spanish. It uses a small local base stylesheet, local Open Sans fonts, bold headings, forest-green text, and contrasting borders. All 14 service listings and seven office-hour entries are retained.
 
 ## Run locally
 
@@ -18,11 +18,13 @@ Publish from the `main` branch and repository root. This release preserves the e
 
 ## Visitor features
 
+- A bilingual, 39-item tax preparation checklist at `client-portal.html#tax-checklist`, with checkboxes, progress, reset, and a print/save-PDF layout. Checkmarks stay in the current page only; no personal information or checklist state is collected or saved.
+- An IRS Tax News window on both homepages, populated from official IRS newsroom headlines. See the refresh workflow below.
 - Mobile navigation with keyboard support and Escape to close.
 - Service filtering with shareable category links.
 - Service-specific links that preselect an inquiry topic.
 - Expandable FAQs and an accessible skip link.
-- Local fonts and CMS styles; the website makes no external asset requests.
+- Local fonts and styles; the website makes no external asset requests. The original CMS vendor files and font licenses remain in the repository; the pages load only the smaller base stylesheet and ASG brand layer.
 - English/Spanish switches preserve the current page and service/filter query.
 - A custom transparent ASG logo is used in the header, home-page feature, and favicon. It features Lawrence’s mill skyline, the central Ayer Mill Clock Tower, Tower Hill High Service Water Tower, and twin Mount Vernon water tanks.
 - WhatsApp links reach 978-902-9018 on every page and in the contact details. Clicking opens WhatsApp without automatically sending a message.
@@ -50,7 +52,7 @@ The `server/` folder contains a standalone Node API that rejects invalid contact
 
 ## Editing the static website
 
-The root HTML files are the English pages; `es/` contains the Spanish versions. `assets/brand.css` contains ASG’s visual design, `assets/site.js` controls navigation and service filters, and `assets/contact.js` prepares the inquiry draft. The CMS files in `assets/cms/` are unchanged from the supplied release; the upstream license is included there. CMS here means the Centers for Medicare & Medicaid Services Design System, not a content-management backend. The WhatsApp glyph comes from Font Awesome; its attribution and license are included in assets/whatsapp-LICENSE.txt.
+The root HTML files are the English pages; `es/` contains the Spanish versions. `assets/base.css` contains the font declarations and base primitives, `assets/brand.css` contains ASG’s visual design, `assets/site.js` controls navigation and service filters, and `assets/contact.js` prepares the inquiry draft. The retained CMS files in `assets/cms/` are unchanged from the supplied release; their upstream font license is included there. The WhatsApp glyph comes from Font Awesome; its attribution and license are included in assets/whatsapp-LICENSE.txt. Run `python .github/version-assets.py` after changing CSS, JavaScript, fonts or display images. See `CLOUDFLARE-CACHE-NOTES.md` for the separate production cache settings.
 
 ## Business details
 
@@ -62,4 +64,14 @@ The root HTML files are the English pages; `es/` contains the Spanish versions. 
 ## Verification
 
 The GitHub Actions workflow runs server security tests and Chromium checks across 12 pages and five screen widths, validates links/assets and interactions, scans accessibility, and saves desktop/mobile screenshots. See `VALIDATION.md` for the actual verification results and any limits.
+
+## Official IRS news refresh
+
+`.github/update-irs-news.py` reads the public [IRS current-month news releases](https://www.irs.gov/newsroom/news-releases-for-current-month) using Python's standard library, validates official IRS links and publication dates, and writes six recent headlines to `assets/irs-news.json`. It retains previous items across month changes and preserves the last successful file if fetching or parsing fails. Article text is not republished; headlines link to the original announcements. Spanish pages identify the headlines as English originals.
+
+Once approved and merged to the default branch, `.github/workflows/irs-news.yml` checks hourly at minute 17, or on manual dispatch. It commits only the news JSON and explicitly requests a build from the existing GitHub Pages source branch, because a push using `GITHUB_TOKEN` does not itself trigger a Pages build. This uses the workflow's repository contents/write and Pages/write permissions, with no extra API key or runtime backend. Scheduled runs can be delayed by GitHub; a failed run remains visible in Actions. Branch rules must allow the bot's data-only updates.
+
+The browser requests the JSON on load, every ten minutes while visible, and when a stale tab becomes visible again. Requests bypass normal browser caching. It displays the actual successful source-check time in Eastern time, flags snapshots older than six hours, and links directly to the newsroom if it cannot refresh. The panel covers IRS news releases, including announcements about tax rules; it is not a comprehensive or instant Federal Register monitor.
+
+Run the collector tests with `python .github/test-irs-news.py` and refresh data with `python .github/update-irs-news.py`. No workflow has been activated or published as part of the local design preview.
 

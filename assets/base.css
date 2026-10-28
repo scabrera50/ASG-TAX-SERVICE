@@ -1,0 +1,25 @@
+/* Only the base styles and primitives used by this static website.
+   Font licenses remain in assets/cms/LICENSE.md. */
+@font-face { font-family:'Open Sans'; font-style:normal; font-weight:400; font-display:optional; src:url('cms/fonts/opensans-regular-webfont.woff2?v=c6318feaf0d7') format('woff2'); }
+@font-face { font-family:'Open Sans'; font-style:normal; font-weight:600; font-display:optional; src:url('cms/fonts/opensans-semibold-webfont.woff2?v=01ca1dfe5dd1') format('woff2'); }
+@font-face { font-family:'Open Sans'; font-style:normal; font-weight:700; font-display:optional; src:url('cms/fonts/opensans-bold-webfont.woff2?v=095451bfdef5') format('woff2'); }
+html { -webkit-text-size-adjust:100%; }
+body { min-height:100vh; }
+button,input,select,textarea { font:inherit; }
+button,input,select,textarea { margin:0; }
+button { cursor:pointer; }
+button:disabled,input:disabled,select:disabled,textarea:disabled { cursor:not-allowed; }
+label,legend { display:block; margin:0; }
+b,strong { font-weight:700; }
+fieldset { border:0; margin:0; padding:0; }
+figure { margin:0; }
+[tabindex='-1']:focus { outline:0; }
+.ds-c-skip-nav { position:absolute; left:12px; top:0; transform:translateY(-150%); padding:14px 20px; text-decoration:none; }
+.ds-c-skip-nav:focus { transform:translateY(0); }
+.ds-c-label { display:block; }
+.ds-c-field { display:block; width:100%; }
+.ds-c-hint { display:block; }
+.ds-c-alert { position:relative; }
+.ds-c-alert__body { min-width:0; }
+.ds-c-button:disabled { opacity:.7; }
+@media(forced-colors:active) { a,button,input,select,textarea { forced-color-adjust:auto; } .ds-c-button { border:1px solid ButtonText; } }

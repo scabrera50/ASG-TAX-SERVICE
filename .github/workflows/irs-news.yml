@@ -1,0 +1,41 @@
+name: Refresh official IRS news
+on:
+  schedule:
+    # Run away from the busy start of the hour. GitHub may delay scheduled runs.
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: irs-news-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check parser and source-link validation
+        run: python .github/test-irs-news.py
+      - name: Fetch official IRS headlines
+        run: python .github/update-irs-news.py
+      - name: Save refreshed static news
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/irs-news.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh official IRS headlines'
+            git push
+          fi
+      - name: Request a build from the existing Pages source branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # A GITHUB_TOKEN push alone does not trigger a branch-based Pages build.
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

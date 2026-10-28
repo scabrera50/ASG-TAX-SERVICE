@@ -7,3 +7,5 @@ node_modules/
 *.db
 *.db-*
 server/data/
+__pycache__/
+*.py[cod]

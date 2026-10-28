@@ -72,7 +72,7 @@ try {
    assert.ok(layout.scrollWidth<=width,`Overflow: ${file} at ${width}, ${layout.scrollWidth}`);
    assert.equal(layout.h1,1);
    assert.ok(layout.title && layout.description);
-   assert.ok(layout.headingFont.includes('Bitter'));
+   assert.ok(layout.headingFont.includes('Open Sans'));
    assert.equal(await page.locator('.whatsapp-float').getAttribute('href'),'https://wa.me/19789029018');
    assert.ok(await page.locator('.brand-mark img').first().evaluate(img=>img.complete && img.naturalWidth>0));
    for(const link of layout.links) {

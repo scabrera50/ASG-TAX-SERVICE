@@ -1,0 +1,42 @@
+{
+  "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
+  "checkedAt": "2026-10-28T00:07:08+00:00",
+  "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-reminder-year-round-tax-planning-can-make-filing-easier",
+      "title": "IRS reminder: Year-round tax planning can make filing easier",
+      "id": "IR-2026-128",
+      "published": "2026-10-23"
+    },
+    {
+      "url": "https://www.irs.gov/newsroom/irs-reminder-take-steps-now-to-protect-tax-information",
+      "title": "IRS reminder: Take steps now to protect tax information",
+      "id": "IR-2026-127",
+      "published": "2026-10-22"
+    },
+    {
+      "url": "https://www.irs.gov/newsroom/treasury-irs-update-retirement-plan-correction-program-and-establish-correction-program-for-individual-retirement-accounts",
+      "title": "Treasury, IRS update retirement plan correction program and establish correction program for individual retirement accounts",
+      "id": "IR-2026-126",
+      "published": "2026-10-22"
+    },
+    {
+      "url": "https://www.irs.gov/newsroom/temporary-reporting-and-recordkeeping-relief-for-certain-fuel-uses",
+      "title": "Temporary reporting and recordkeeping relief for certain fuel uses",
+      "id": "IR-2026-125",
+      "published": "2026-10-21"
+    },
+    {
+      "url": "https://www.irs.gov/newsroom/irs-announces-2026-tax-professional-awareness-week-highlighting-resources-to-help-tax-professionals-prepare-for-the-2027-filing-season",
+      "title": "IRS announces 2026 Tax Professional Awareness Week, highlighting resources to help tax professionals prepare for the 2027 filing season",
+      "id": "IR-2026-124",
+      "published": "2026-10-16"
+    },
+    {
+      "url": "https://www.irs.gov/newsroom/irs-has-begun-issuing-automatic-refunds-to-individuals-who-claimed-adoption-tax-credit-carryforward-from-prior-years",
+      "title": "IRS has begun issuing automatic refunds to individuals who claimed Adoption Tax Credit carryforward from prior years",
+      "id": "IR-2026-123",
+      "published": "2026-10-16"
+    }
+  ]
+}
