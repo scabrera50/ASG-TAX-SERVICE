@@ -62,7 +62,7 @@ The root HTML files are the English pages; `es/` contains the Spanish versions. 
 
 - Address: 111 Park St, Lawrence, MA 01841
 - Phone: 978-902-9018
-- Email: asgtaxservices@gmail.com
+- Email: info@asgtaxservice.com
 - Hours: Monday–Friday 9 AM–6 PM; Saturday 10 AM–5 PM; Sunday closed (April 16–December 31).
 - Tax season hours (January 1–April 15): Monday–Friday 9 AM–8 PM; Saturday and Sunday 10 AM–7 PM.
 - Closed Thanksgiving, Christmas Day and New Year’s Day. The structured data on both home pages lists the 2027 tax season and the 2026–27 holiday dates; update those dates each year.

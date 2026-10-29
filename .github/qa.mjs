@@ -147,7 +147,7 @@ try {
  vm.runInNewContext(fs.readFileSync('assets/contact.js','utf8'),{document:fakeDocument,window:fakeWindow,URLSearchParams,encodeURIComponent,FormData:class {get(name){return values.get(name);}}});
  valid=false; handler({preventDefault(){}}); assert.equal(fakeWindow.location.href,'');
  valid=true; handler({preventDefault(){}});
- assert.ok(fakeWindow.location.href.startsWith('mailto:asgtaxservices@gmail.com?'));
+ assert.ok(fakeWindow.location.href.startsWith('mailto:info@asgtaxservice.com?'));
  const params = new URL(fakeWindow.location.href).searchParams;
  assert.equal(params.get('subject'),'ASG Tax Services general inquiry');
  assert.ok(params.get('body').includes('QA & Example'));
