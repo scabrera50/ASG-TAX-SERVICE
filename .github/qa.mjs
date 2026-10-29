@@ -18,7 +18,7 @@ const spanishServiceInquiries = [
  ['Payroll support','Apoyo con la nómina'],
  ['Tax planning','Planificación tributaria'],
  ['Tax problem consulting','Consultas sobre problemas tributarios'],
- ['IRS audit representation','Representación en auditorías del IRS'],
+ ['IRS audit representation','Apoyo con cartas y auditorías del IRS'],
  ['Translations','Traducciones'],
  ['Notary public services','Servicios de notarización'],
  ['Immigration form translation & clerical assistance','Traducción de formularios de inmigración y asistencia administrativa']
