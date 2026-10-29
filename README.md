@@ -21,6 +21,10 @@ Publish from the `main` branch and repository root. This release preserves the e
 - A bilingual, 39-item tax preparation checklist at `client-portal.html#tax-checklist`, with checkboxes, progress, reset, and a print/save-PDF layout. Checkmarks stay in the current page only; no personal information or checklist state is collected or saved.
 - An IRS Tax News window on both homepages, populated from official IRS newsroom headlines. See the refresh workflow below.
 - Mobile navigation with keyboard support and Escape to close.
+- On phones, a fixed bottom bar offers one-tap Call and WhatsApp buttons (it replaces the floating WhatsApp button at that width).
+- An "Open now / Closed now" line above the hours tables, calculated in Eastern time by `assets/site.js`, with the current season's table marked. **If the hours or holidays change, update both the hours tables and `hoursFor`/`isHoliday` in `assets/site.js`.**
+- A "Meet our team" section on both About pages (`#team`) for Maria Lizardo, Founder & Tax Preparer, with a placeholder initials circle until a photo is added.
+- A bilingual, branded `404.html` that GitHub Pages serves for missing addresses.
 - Service filtering with shareable category links.
 - Service-specific links that preselect an inquiry topic.
 - Expandable FAQs and an accessible skip link.
@@ -58,8 +62,11 @@ The root HTML files are the English pages; `es/` contains the Spanish versions. 
 
 - Address: 111 Park St, Lawrence, MA 01841
 - Phone: 978-902-9018
-- Email: asgtaxservices@gmail.com
-- Hours: Monday, Tuesday, Friday, Saturday, Sunday 9 AM–8 PM; Wednesday and Thursday 9 AM–7 PM.
+- Email: info@asgtaxservice.com
+- Hours: Monday–Friday 9 AM–6 PM; Saturday 10 AM–5 PM; Sunday closed (April 16–December 31).
+- Tax season hours (January 1–April 15): Monday–Friday 9 AM–8 PM; Saturday and Sunday 10 AM–7 PM.
+- Closed Thanksgiving, Christmas Day and New Year’s Day. The structured data on both home pages lists the 2027 tax season and the 2026–27 holiday dates; update those dates each year.
+- Credentials: IRS Annual Filing Season Program (AFSP) Record of Completion; Massachusetts Notary Public. AFSP is renewed each year; if it lapses, remove the AFSP wording from the About pages and the IRS audit service.
 
 ## Verification
 
