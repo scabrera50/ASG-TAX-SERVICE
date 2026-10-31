@@ -21,11 +21,14 @@ def official_news_url(value):
 
 
 def parse_date(value):
-    match = re.search(r'(IR-\d{4}-\d+),\s*([A-Za-z]+)\.?\s+(\d{1,2}),\s*(\d{4})', value)
+    # The IRS sometimes omits the space after an abbreviated month ("Oct.29").
+    match = re.search(r'(IR-\d{4}-\d+),\s*([A-Za-z]+)\.?\s*(\d{1,2}),\s*(\d{4})', value)
     if not match:
         raise ValueError('IRS publication date not found')
     code, month, day, year = match.groups()
     months = {name: n for n, name in enumerate(['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'], 1)}
+    if month.lower()[:3] not in months:
+        raise ValueError('IRS publication month not recognized')
     return code, datetime(int(year), months[month.lower()[:3]], int(day)).date().isoformat()
 
 
@@ -39,6 +42,7 @@ class NewsParser(HTMLParser):
         self.abstract_parts = None
         self.abstract_depth = 0
         self.items = []
+        self.skipped = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -75,8 +79,13 @@ class NewsParser(HTMLParser):
             if self.abstract_depth == 0:
                 abstract = ''.join(self.abstract_parts)
                 if self.current and self.current.get('title') and re.search(r'IR-\d{4}-\d+', abstract):
-                    code, published = parse_date(abstract)
-                    self.items.append({**self.current, 'id': code, 'published': published})
+                    # Skip one unreadable date rather than stopping the whole refresh.
+                    try:
+                        code, published = parse_date(abstract)
+                    except ValueError as error:
+                        self.skipped.append(f"{self.current['title']}: {error}")
+                    else:
+                        self.items.append({**self.current, 'id': code, 'published': published})
                 self.current = None
                 self.abstract_parts = None
         if tag == 'article':
@@ -86,6 +95,8 @@ class NewsParser(HTMLParser):
 def build_feed(html, previous=None, checked_at=None):
     parser = NewsParser()
     parser.feed(html)
+    for skipped in parser.skipped:
+        print(f'Skipped IRS release with an unreadable date: {skipped}', file=sys.stderr)
     if not parser.items:
         raise ValueError('No dated IRS news releases found; keeping the last successful feed')
     old = (previous or {}).get('items', [])

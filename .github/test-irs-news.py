@@ -28,6 +28,15 @@ class FeedTests(unittest.TestCase):
         feed = news.build_feed(document(release('November', 'IR-2026-101', 'Nov. 1, 2026', '/newsroom/november')), previous)
         self.assertEqual([item['title'] for item in feed['items']], ['November', 'October'])
 
+    def test_month_without_space_before_day(self):
+        feed = news.build_feed(document(release('Record year', 'IR-2026-129', 'Oct.29, 2026')))
+        self.assertEqual(feed['items'][0]['published'], '2026-10-29')
+
+    def test_one_unreadable_date_is_skipped_not_fatal(self):
+        html = document(release('Readable', 'IR-2026-1', 'Oct. 1, 2026', '/newsroom/readable'), release('Garbled', 'IR-2026-2', 'sometime soon', '/newsroom/garbled'), release('Bad month', 'IR-2026-3', 'Foo. 3, 2026', '/newsroom/bad-month'))
+        feed = news.build_feed(html)
+        self.assertEqual([item['title'] for item in feed['items']], ['Readable'])
+
     def test_empty_or_changed_source_fails_instead_of_claiming_freshness(self):
         with self.assertRaises(ValueError):
             news.build_feed('<article>Unavailable</article>')
