@@ -1,7 +1,19 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-10-29T13:05:27+00:00",
+  "checkedAt": "2026-11-04T17:28:50+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-reminder-tax-professionals-should-renew-their-ptins-for-2027",
+      "title": "IRS reminder: Tax professionals should renew their PTINs for 2027",
+      "id": "IR-2026-130",
+      "published": "2026-11-04"
+    },
+    {
+      "url": "https://www.irs.gov/newsroom/irs-achieved-historic-performance-in-2026-for-american-taxpayers-efficiently-delivering-new-tax-benefits-to-working-families",
+      "title": "IRS achieved historic performance in 2026 for American taxpayers, efficiently delivering new tax benefits to working families",
+      "id": "IR-2026-129",
+      "published": "2026-10-29"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-reminder-year-round-tax-planning-can-make-filing-easier",
       "title": "IRS reminder: Year-round tax planning can make filing easier",
@@ -25,18 +37,6 @@
       "title": "Temporary reporting and recordkeeping relief for certain fuel uses",
       "id": "IR-2026-125",
       "published": "2026-10-21"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-announces-2026-tax-professional-awareness-week-highlighting-resources-to-help-tax-professionals-prepare-for-the-2027-filing-season",
-      "title": "IRS announces 2026 Tax Professional Awareness Week, highlighting resources to help tax professionals prepare for the 2027 filing season",
-      "id": "IR-2026-124",
-      "published": "2026-10-16"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-has-begun-issuing-automatic-refunds-to-individuals-who-claimed-adoption-tax-credit-carryforward-from-prior-years",
-      "title": "IRS has begun issuing automatic refunds to individuals who claimed Adoption Tax Credit carryforward from prior years",
-      "id": "IR-2026-123",
-      "published": "2026-10-16"
     }
   ]
 }
