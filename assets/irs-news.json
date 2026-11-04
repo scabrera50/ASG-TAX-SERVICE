@@ -1,7 +1,13 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-04T17:28:50+00:00",
+  "checkedAt": "2026-11-04T21:54:12+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-nationwide-tax-forum-online-offers-new-2026-seminars",
+      "title": "IRS Nationwide Tax Forum Online offers new 2026 seminars",
+      "id": "IR-2026-131",
+      "published": "2026-11-04"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-reminder-tax-professionals-should-renew-their-ptins-for-2027",
       "title": "IRS reminder: Tax professionals should renew their PTINs for 2027",
@@ -31,12 +37,6 @@
       "title": "Treasury, IRS update retirement plan correction program and establish correction program for individual retirement accounts",
       "id": "IR-2026-126",
       "published": "2026-10-22"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/temporary-reporting-and-recordkeeping-relief-for-certain-fuel-uses",
-      "title": "Temporary reporting and recordkeeping relief for certain fuel uses",
-      "id": "IR-2026-125",
-      "published": "2026-10-21"
     }
   ]
 }
