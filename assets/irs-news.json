@@ -1,7 +1,13 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-05T10:58:22+00:00",
+  "checkedAt": "2026-11-05T18:46:05+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/treasury-irs-announce-opportunity-zones-designations-for-over-6500-communities-across-america",
+      "title": "Treasury, IRS Announce Opportunity Zones Designations for Over 6,500 Communities Across America",
+      "id": "IR-2026-132",
+      "published": "2026-11-05"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-nationwide-tax-forum-online-offers-new-2026-seminars",
       "title": "IRS Nationwide Tax Forum Online offers new 2026 seminars",
@@ -30,12 +36,6 @@
       "url": "https://www.irs.gov/newsroom/irs-reminder-take-steps-now-to-protect-tax-information",
       "title": "IRS reminder: Take steps now to protect tax information",
       "id": "IR-2026-127",
-      "published": "2026-10-22"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/treasury-irs-update-retirement-plan-correction-program-and-establish-correction-program-for-individual-retirement-accounts",
-      "title": "Treasury, IRS update retirement plan correction program and establish correction program for individual retirement accounts",
-      "id": "IR-2026-126",
       "published": "2026-10-22"
     }
   ]
