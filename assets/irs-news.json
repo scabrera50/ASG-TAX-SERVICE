@@ -1,7 +1,13 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-06T15:56:56+00:00",
+  "checkedAt": "2026-11-06T21:30:28+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-expands-tax-pro-account-for-business-client-payments",
+      "title": "IRS expands Tax Pro Account for business client payments",
+      "id": "IR-2026-134",
+      "published": "2026-11-06"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2027-taxpayers-continue-to-benefit-from-the-working-families-tax-cuts",
       "title": "IRS releases tax inflation adjustments for tax year 2027; taxpayers continue to benefit from the Working Families Tax Cuts",
@@ -31,12 +37,6 @@
       "title": "IRS achieved historic performance in 2026 for American taxpayers, efficiently delivering new tax benefits to working families",
       "id": "IR-2026-129",
       "published": "2026-10-29"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-reminder-year-round-tax-planning-can-make-filing-easier",
-      "title": "IRS reminder: Year-round tax planning can make filing easier",
-      "id": "IR-2026-128",
-      "published": "2026-10-23"
     }
   ]
 }
