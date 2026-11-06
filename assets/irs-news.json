@@ -1,7 +1,13 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-05T18:46:05+00:00",
+  "checkedAt": "2026-11-06T00:18:26+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2027-taxpayers-continue-to-benefit-from-the-working-families-tax-cuts",
+      "title": "IRS releases tax inflation adjustments for tax year 2027; taxpayers continue to benefit from the Working Families Tax Cuts",
+      "id": "IR-2026-133",
+      "published": "2026-11-05"
+    },
     {
       "url": "https://www.irs.gov/newsroom/treasury-irs-announce-opportunity-zones-designations-for-over-6500-communities-across-america",
       "title": "Treasury, IRS Announce Opportunity Zones Designations for Over 6,500 Communities Across America",
@@ -31,12 +37,6 @@
       "title": "IRS reminder: Year-round tax planning can make filing easier",
       "id": "IR-2026-128",
       "published": "2026-10-23"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-reminder-take-steps-now-to-protect-tax-information",
-      "title": "IRS reminder: Take steps now to protect tax information",
-      "id": "IR-2026-127",
-      "published": "2026-10-22"
     }
   ]
 }
