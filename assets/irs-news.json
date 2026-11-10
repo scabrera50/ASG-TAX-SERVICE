@@ -1,7 +1,13 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-10T13:29:15+00:00",
+  "checkedAt": "2026-11-10T20:50:07+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-reminder-permanent-charitable-contribution-deduction-begins-for-returns-filed-next-year-for-taxpayers-who-do-not-itemize",
+      "title": "IRS reminder: Permanent charitable contribution deduction begins for returns filed next year for taxpayers who do not itemize",
+      "id": "IR-2026-135",
+      "published": "2026-11-10"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-expands-tax-pro-account-for-business-client-payments",
       "title": "IRS expands Tax Pro Account for business client payments",
@@ -31,12 +37,6 @@
       "title": "IRS reminder: Tax professionals should renew their PTINs for 2027",
       "id": "IR-2026-130",
       "published": "2026-11-04"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-achieved-historic-performance-in-2026-for-american-taxpayers-efficiently-delivering-new-tax-benefits-to-working-families",
-      "title": "IRS achieved historic performance in 2026 for American taxpayers, efficiently delivering new tax benefits to working families",
-      "id": "IR-2026-129",
-      "published": "2026-10-29"
     }
   ]
 }
