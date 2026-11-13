@@ -1,7 +1,19 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-13T17:45:50+00:00",
+  "checkedAt": "2026-11-13T23:36:03+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-issues-frequently-asked-questions-about-the-low-income-communities-bonus-credit-amount-program",
+      "title": "IRS issues frequently asked questions about the Low-income Communities Bonus Credit Amount Program",
+      "id": "IR-2026-139",
+      "published": "2026-11-13"
+    },
+    {
+      "url": "https://www.irs.gov/newsroom/irs-appoints-10-new-members-to-electronic-tax-administration-advisory-committee",
+      "title": "IRS appoints 10 new members to Electronic Tax Administration Advisory Committee",
+      "id": "IR-2026-138",
+      "published": "2026-11-13"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-shares-agency-financial-report-for-fiscal-year-2026",
       "title": "IRS shares Agency Financial Report for fiscal year 2026",
@@ -25,18 +37,6 @@
       "title": "IRS expands Tax Pro Account for business client payments",
       "id": "IR-2026-134",
       "published": "2026-11-06"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2027-taxpayers-continue-to-benefit-from-the-working-families-tax-cuts",
-      "title": "IRS releases tax inflation adjustments for tax year 2027; taxpayers continue to benefit from the Working Families Tax Cuts",
-      "id": "IR-2026-133",
-      "published": "2026-11-05"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/treasury-irs-announce-opportunity-zones-designations-for-over-6500-communities-across-america",
-      "title": "Treasury, IRS announce Opportunity Zones designations for over 6,500 communities across America",
-      "id": "IR-2026-132",
-      "published": "2026-11-05"
     }
   ]
 }
