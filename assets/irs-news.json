@@ -1,7 +1,13 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-16T11:23:43+00:00",
+  "checkedAt": "2026-11-16T22:05:59+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-reminder-take-steps-now-to-make-tax-filing-in-2027-easier",
+      "title": "IRS reminder: Take steps now to make tax filing in 2027 easier",
+      "id": "IR-2026-140",
+      "published": "2026-11-16"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-issues-frequently-asked-questions-about-the-low-income-communities-bonus-credit-amount-program",
       "title": "IRS issues frequently asked questions about the Low-income Communities Bonus Credit Amount Program",
@@ -31,12 +37,6 @@
       "title": "IRS reminder: Permanent charitable contribution deduction begins for returns filed next year for taxpayers who do not itemize",
       "id": "IR-2026-135",
       "published": "2026-11-10"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-expands-tax-pro-account-for-business-client-payments",
-      "title": "IRS expands Tax Pro Account for business client payments",
-      "id": "IR-2026-134",
-      "published": "2026-11-06"
     }
   ]
 }
