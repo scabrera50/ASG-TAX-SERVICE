@@ -1,7 +1,13 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-17T14:27:30+00:00",
+  "checkedAt": "2026-11-17T22:54:13+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-final-rules-to-help-hardworking-americans-build-a-financially-secure-retirement",
+      "title": "Treasury, IRS issue final rules to help hardworking Americans build a financially secure retirement",
+      "id": "IR-2026-141",
+      "published": "2026-11-17"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-reminder-take-steps-now-to-make-tax-filing-in-2027-easier",
       "title": "IRS reminder: Take steps now to make tax filing in 2027 easier",
@@ -31,12 +37,6 @@
       "title": "401(k) limit increases to $25,500 for 2027, IRA limit remains $7,500",
       "id": "IR-2026-136",
       "published": "2026-11-12"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-reminder-permanent-charitable-contribution-deduction-begins-for-returns-filed-next-year-for-taxpayers-who-do-not-itemize",
-      "title": "IRS reminder: Permanent charitable contribution deduction begins for returns filed next year for taxpayers who do not itemize",
-      "id": "IR-2026-135",
-      "published": "2026-11-10"
     }
   ]
 }
