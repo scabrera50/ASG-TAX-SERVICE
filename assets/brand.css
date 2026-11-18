@@ -187,6 +187,7 @@ a.whatsapp-float { display:none; }
 .footer-bottom small { font-size:inherit; }
 .footer-bottom a { text-decoration:none; }
 .page-hero { padding-block:var(--section-space); background:#edf2e7; border-bottom:1px solid var(--asg-line); }
+.not-found-actions { margin-top:24px; }
 .page-hero h1 { max-width:26ch; margin-bottom:24px; }
 .page-hero h1 em { display:block; }
 .page-hero-bottom { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
