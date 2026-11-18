@@ -1,7 +1,19 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-18T14:01:28+00:00",
+  "checkedAt": "2026-11-18T21:58:16+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/irs-announces-2027-tax-counseling-for-the-elderly-and-volunteer-income-tax-assistance-program-grants",
+      "title": "IRS announces 2027 Tax Counseling for the Elderly and Volunteer Income Tax Assistance program grants",
+      "id": "IR-2026-143",
+      "published": "2026-11-18"
+    },
+    {
+      "url": "https://www.irs.gov/newsroom/irs-advisory-council-issues-annual-public-report",
+      "title": "IRS Advisory Council issues annual public report",
+      "id": "IR-2026-142",
+      "published": "2026-11-18"
+    },
     {
       "url": "https://www.irs.gov/newsroom/treasury-irs-issue-final-rules-to-help-hardworking-americans-build-a-financially-secure-retirement",
       "title": "Treasury, IRS issue final rules to help hardworking Americans build a financially secure retirement",
@@ -25,18 +37,6 @@
       "title": "IRS appoints 10 new members to Electronic Tax Administration Advisory Committee",
       "id": "IR-2026-138",
       "published": "2026-11-13"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-shares-agency-financial-report-for-fiscal-year-2026",
-      "title": "IRS shares Agency Financial Report for fiscal year 2026",
-      "id": "IR-2026-137",
-      "published": "2026-11-12"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/401k-limit-increases-to-25500-for-2027-ira-limit-remains-7500",
-      "title": "401(k) limit increases to $25,500 for 2027, IRA limit remains $7,500",
-      "id": "IR-2026-136",
-      "published": "2026-11-12"
     }
   ]
 }
