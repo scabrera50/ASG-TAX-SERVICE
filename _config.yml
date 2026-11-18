@@ -1,0 +1,12 @@
+# GitHub Pages publishes this folder as the website. Files listed under
+# "exclude" stay in the repository but are not served on asgtaxservice.com.
+# Dot-folders such as .git and .github are never published; .well-known is
+# listed under "include" so security.txt is served.
+exclude:
+  - README.md
+  - VALIDATION.md
+  - PREVIEW-NOTES.md
+  - CLOUDFLARE-CACHE-NOTES.md
+  - server
+include:
+  - .well-known

@@ -14,7 +14,14 @@ Open http://localhost:8000 in your browser. Stop the server with Ctrl+C. Keep th
 
 ## GitHub Pages
 
-Publish from the `main` branch and repository root. This release preserves the existing repository’s `CNAME`: `www.asgtaxservice.com`. Canonical URLs, robots.txt, and the sitemap use the same hostname. The `.nojekyll` file is included.
+Publish from the `main` branch and repository root. This release preserves the existing repository’s `CNAME`: `www.asgtaxservice.com`. Canonical URLs, robots.txt, and the sitemap use the same hostname. `_config.yml` keeps internal files (this README, the notes files and `server/`) in the repository but off the public website; add any new internal file to its `exclude` list. Pages copies HTML, CSS and JavaScript without front matter unchanged.
+
+## Security settings
+
+- Secret scanning, push protection, Dependabot alerts and Dependabot security updates are enabled in the repository settings.
+- Workflow actions are pinned to exact commits; `.github/dependabot.yml` opens a monthly pull request when updates are available.
+- `.well-known/security.txt` lists how to report a security problem. **Update its `Expires` date before 2027-11-18** (it must stay within one year).
+- Security response headers (CSP, frame and referrer policies) are set in Cloudflare, because GitHub Pages cannot set custom headers.
 
 ## Visitor features
 
