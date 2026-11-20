@@ -14,7 +14,13 @@
   };
   [progress, printButton, resetButton].forEach(element => { element.hidden = false; });
   section.addEventListener('change', update);
-  resetButton.addEventListener('click', () => { items.forEach(item => { item.checked = false; }); update(); });
+  resetButton.addEventListener('click', () => {
+    if (!window.confirm(es ? '¿Borrar todas las marcas de la lista?' : 'Clear all checkmarks from the list?')) return;
+    items.forEach(item => { item.checked = false; });
+    update();
+  });
+  // Checkmarks are never saved, so warn before leaving the page with some checked.
+  window.addEventListener('beforeunload', event => { if (items.some(item => item.checked)) event.preventDefault(); });
   let collapsed = [];
   window.addEventListener('beforeprint', () => {
     collapsed = Array.from(section.querySelectorAll('details:not([open])'));

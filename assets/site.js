@@ -50,7 +50,8 @@ if(hoursStatus.length) {
     if(weekday === 0) return null;
     return weekday === 6 ? [10,17] : [9,18];
   };
-  const clock = hour => spanish ? `${hour > 12 ? hour - 12 : hour} ${hour < 12 ? 'a. m.' : 'p. m.'}` : `${hour > 12 ? hour - 12 : hour} ${hour < 12 ? 'AM' : 'PM'}`;
+  const hourFormat = new Intl.DateTimeFormat(spanish ? 'es-US' : 'en-US',{hour:'numeric',timeZone:'UTC'});
+  const clock = hour => hourFormat.format(new Date(Date.UTC(2000,0,1,hour)));
   const weekdayName = new Intl.DateTimeFormat(spanish ? 'es-US' : 'en-US',{weekday:'long',timeZone:'UTC'});
   const updateHours = () => {
     const now = Object.fromEntries(eastern.formatToParts(new Date()).map(part => [part.type,part.value]));
