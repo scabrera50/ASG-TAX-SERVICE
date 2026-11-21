@@ -14,6 +14,8 @@
   const refresh = async () => {
     if (loading || document.hidden) return;
     loading = true;
+    // The page ships a link to the IRS newsroom; it stays as the fallback if this refresh fails.
+    if (!lastRefresh) status.textContent = es ? 'Cargando los titulares más recientes…' : 'Loading the latest headlines…';
     try {
       const url = new URL(feedUrl);
       url.searchParams.set('check', Math.floor(Date.now() / 60000));
