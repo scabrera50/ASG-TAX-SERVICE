@@ -14,6 +14,12 @@ if(form) {
     const body = inquirySpanish ? `Nombre: ${data.get('name')}\nCorreo: ${data.get('email')}\nTeléfono: ${data.get('phone') || 'No indicado'}\nServicio: ${topic}\n\n${data.get('message')}` : `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nPhone: ${data.get('phone') || 'Not provided'}\nService: ${topic}\n\n${data.get('message')}`;
     const url = 'mailto:info@asgtaxservice.com?subject=' + encodeURIComponent(inquirySpanish ? 'Consulta general a ASG Tax Services' : 'ASG Tax Services general inquiry') + '&body=' + encodeURIComponent(body);
     const status = document.getElementById('form-status');
+    // Many mail apps (Outlook on Windows among them) cannot open mailto links over about 2,000 characters.
+    if(url.length > 1900) {
+      status.textContent = inquirySpanish ? 'Tu mensaje es demasiado largo para abrirlo como borrador de correo. Acórtalo o escribe directamente a info@asgtaxservice.com.' : 'Your message is too long to open as an email draft. Please shorten it, or write to info@asgtaxservice.com directly.';
+      document.getElementById('message').focus?.();
+      return;
+    }
     status.textContent = inquirySpanish ? 'Se solicitó un borrador de correo. Tu mensaje no se ha enviado. Revísalo y envíalo desde tu aplicación de correo. Si no se abre, llama al 978-902-9018.' : 'Email draft requested. Your message has not been sent. Review and send it in your email app. If no app opens, call 978-902-9018.';
     const link = document.createElement('a');
     link.href = url;

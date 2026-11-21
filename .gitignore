@@ -6,6 +6,5 @@ node_modules/
 *.sqlite-*
 *.db
 *.db-*
-server/data/
 __pycache__/
 *.py[cod]

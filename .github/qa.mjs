@@ -161,6 +161,11 @@ try {
  assert.ok(new URL(fakeWindow.location.href).searchParams.get('body').includes('Nombre: QA & Example'));
  assert.equal(new URL(fakeWindow.location.href).searchParams.get('subject'),'Consulta general a ASG Tax Services');
  assert.ok(status.textContent.includes('no se ha enviado'));
+ // A message too long for a mailto link is stopped with an explanation instead of opening a broken draft.
+ values.set('message','Necesito ayuda con la nómina de mi negocio. '.repeat(45)); fakeWindow.location.href='';
+ handler({preventDefault(){}});
+ assert.equal(fakeWindow.location.href,'');
+ assert.ok(status.textContent.includes('demasiado largo'));
  await page.goto(`${base}/index.html`);
  await page.locator('.faq-list summary').first().click();
  assert.equal(await page.locator('.faq-list details').first().getAttribute('open'),'');
@@ -220,6 +225,21 @@ try {
  assert.ok((await noJsPage.locator('.language-switch').getAttribute('href')).endsWith('../contact.html'));
  await checkSpanishServiceInquiries(noJsPage,false);
  await noJs.close();
+ // The open/closed line must match the hours tables: tax season, the day after it, and a holiday (Lawrence time).
+ const hoursContext = await browser.newContext();
+ const hoursPage = await hoursContext.newPage();
+ for(const [when,expected] of [
+  ['2027-01-10T17:00:00Z','Open now · closes at 7 PM'],            // Sunday in tax season, noon
+  ['2027-05-09T16:00:00Z','Closed now · opens tomorrow at 9 AM'],  // Sunday after tax season, noon
+  ['2026-11-26T17:00:00Z','Closed now · opens tomorrow at 9 AM'],  // Thanksgiving, noon
+  ['2027-04-15T23:30:00Z','Open now · closes at 8 PM'],            // last day of tax season, 7:30 PM
+  ['2027-04-16T23:30:00Z','Closed now · opens tomorrow at 10 AM']  // first day after it, 7:30 PM
+ ]) {
+  await hoursPage.clock.setFixedTime(new Date(when));
+  await hoursPage.goto(`${base}/index.html`);
+  assert.equal(await hoursPage.locator('[data-hours-status]').textContent(),expected,`Hours status at ${when}`);
+ }
+ await hoursContext.close();
  assert.deepEqual(errors,[]);
  assert.deepEqual(broken,[]);
  fs.writeFileSync('.test-results/qa-results.json',JSON.stringify({layoutChecks:results,accessibility,errors,broken,interactions:'passed',noJs:'passed',spanishServiceInquiries:{count:spanishServiceInquiries.length,destinations:'passed with and without JavaScript',topicPreselection:'passed with JavaScript',immigrationCard:'preserves in-page details with and without JavaScript'},draftEncoding:'passed; external mail handler not invoked'},null,2));

@@ -14,7 +14,7 @@ Open http://localhost:8000 in your browser. Stop the server with Ctrl+C. Keep th
 
 ## GitHub Pages
 
-Publish from the `main` branch and repository root. This release preserves the existing repository’s `CNAME`: `www.asgtaxservice.com`. Canonical URLs, robots.txt, and the sitemap use the same hostname. `_config.yml` keeps internal files (this README, the notes files and `server/`) in the repository but off the public website; add any new internal file to its `exclude` list. Pages copies HTML, CSS and JavaScript without front matter unchanged.
+Publish from the `main` branch and repository root. This release preserves the existing repository’s `CNAME`: `www.asgtaxservice.com`. Canonical URLs, robots.txt, and the sitemap use the same hostname. `_config.yml` keeps internal files (this README and the notes files) in the repository but off the public website; add any new internal file to its `exclude` list. Pages copies HTML, CSS and JavaScript without front matter unchanged.
 
 ## Security settings
 
@@ -35,7 +35,7 @@ Publish from the `main` branch and repository root. This release preserves the e
 - Service filtering with shareable category links.
 - Service-specific links that preselect an inquiry topic.
 - Expandable FAQs and an accessible skip link.
-- Local fonts and styles; the website makes no external asset requests. The original CMS vendor files and font licenses remain in the repository; the pages load only the smaller base stylesheet and ASG brand layer.
+- Local fonts and styles; the website makes no external asset requests. The pages load only the base stylesheet, the ASG brand layer and the three Open Sans weights in `assets/cms/fonts/` (license in `assets/cms/LICENSE.md`).
 - English/Spanish switches preserve the current page and service/filter query.
 - A custom transparent ASG logo is used in the header, home-page feature, and favicon. It features Lawrence’s mill skyline, the central Ayer Mill Clock Tower, Tower Hill High Service Water Tower, and twin Mount Vernon water tanks.
 - WhatsApp links reach 978-902-9018 on every page and in the contact details. Clicking opens WhatsApp without automatically sending a message.
@@ -57,13 +57,9 @@ The owner confirmed that the business is licensed and Maria is a Massachusetts n
 
 Official USCIS links are external reference resources; the site does not recommend particular applications or interpret their instructions. The inquiry form accepts general questions only and reminds visitors to omit immigration case numbers and identity documents.
 
-## Server validation backend status
-
-The `server/` folder contains a standalone Node API that rejects invalid contact submissions before writing them to SQLite and uses parameterized database queries. It includes automated security tests. **It is not hosted or connected to the live GitHub Pages form.** The public form still prepares an email draft, so no visitor data is currently sent to this API or stored by the website. See [server/README.md](server/README.md) for its input contract, setup, and the remaining hosting/integration step.
-
 ## Editing the static website
 
-The root HTML files are the English pages; `es/` contains the Spanish versions. `assets/base.css` contains the font declarations and base primitives, `assets/brand.css` contains ASG’s visual design, `assets/site.js` controls navigation and service filters, and `assets/contact.js` prepares the inquiry draft. The retained CMS files in `assets/cms/` are unchanged from the supplied release; their upstream font license is included there. The WhatsApp glyph comes from Font Awesome; its attribution and license are included in assets/whatsapp-LICENSE.txt. Run `python .github/version-assets.py` after changing CSS, JavaScript, fonts or display images. See `CLOUDFLARE-CACHE-NOTES.md` for the separate production cache settings.
+The root HTML files are the English pages; `es/` contains the Spanish versions. `assets/base.css` contains the font declarations and base primitives, `assets/brand.css` contains ASG’s visual design, `assets/site.js` controls navigation and service filters, and `assets/contact.js` prepares the inquiry draft. `assets/cms/fonts/` holds the Open Sans files the pages use; their license is in `assets/cms/LICENSE.md`. The WhatsApp glyph comes from Font Awesome; its attribution and license are included in assets/whatsapp-LICENSE.txt. Run `python .github/version-assets.py` after changing CSS, JavaScript, fonts or display images. See `CLOUDFLARE-CACHE-NOTES.md` for the separate production cache settings.
 
 ## Business details
 
@@ -77,7 +73,7 @@ The root HTML files are the English pages; `es/` contains the Spanish versions. 
 
 ## Verification
 
-The GitHub Actions workflow runs server security tests and Chromium checks across 12 pages and five screen widths, validates links/assets and interactions, scans accessibility, and saves desktop/mobile screenshots. See `VALIDATION.md` for the actual verification results and any limits.
+The GitHub Actions workflow runs the IRS headline parser tests and Chromium checks across 12 pages and five screen widths, validates links/assets and interactions (including the contact draft length limit and the open/closed hours line at fixed dates), scans accessibility, and saves desktop/mobile screenshots. See `VALIDATION.md` for the actual verification results and any limits.
 
 ## Official IRS news refresh
 
