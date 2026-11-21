@@ -7,7 +7,7 @@ html { -webkit-text-size-adjust:100%; }
 body { min-height:100vh; }
 button,input,select,textarea { font:inherit; }
 button,input,select,textarea { margin:0; }
-button { cursor:pointer; }
+button,select,summary,label[for] { cursor:pointer; }
 button:disabled,input:disabled,select:disabled,textarea:disabled { cursor:not-allowed; }
 label,legend { display:block; margin:0; }
 b,strong { font-weight:700; }
