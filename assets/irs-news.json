@@ -1,7 +1,13 @@
 {
   "source": "https://www.irs.gov/newsroom/news-releases-for-current-month",
-  "checkedAt": "2026-11-24T10:57:11+00:00",
+  "checkedAt": "2026-11-24T21:13:46+00:00",
   "items": [
+    {
+      "url": "https://www.irs.gov/newsroom/interest-rates-increase-for-the-first-quarter-of-2027",
+      "title": "Interest rates increase for the first quarter of 2027",
+      "id": "IR-2026-144",
+      "published": "2026-11-24"
+    },
     {
       "url": "https://www.irs.gov/newsroom/irs-announces-2027-tax-counseling-for-the-elderly-and-volunteer-income-tax-assistance-program-grants",
       "title": "IRS announces 2027 Tax Counseling for the Elderly and Volunteer Income Tax Assistance program grants",
@@ -30,12 +36,6 @@
       "url": "https://www.irs.gov/newsroom/irs-issues-frequently-asked-questions-about-the-low-income-communities-bonus-credit-amount-program",
       "title": "IRS issues frequently asked questions about the Low-income Communities Bonus Credit Amount Program",
       "id": "IR-2026-139",
-      "published": "2026-11-13"
-    },
-    {
-      "url": "https://www.irs.gov/newsroom/irs-appoints-10-new-members-to-electronic-tax-administration-advisory-committee",
-      "title": "IRS appoints 10 new members to Electronic Tax Administration Advisory Committee",
-      "id": "IR-2026-138",
       "published": "2026-11-13"
     }
   ]
